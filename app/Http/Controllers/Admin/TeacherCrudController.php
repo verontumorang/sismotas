@@ -82,13 +82,17 @@ class TeacherCrudController extends CrudController
                 'name' => 'nip',
                 'type' => 'text'
             ],
+            [
+                'label' => 'Username',
+                'name' => 'username',
+                'type' => 'text'
+            ],
+            [
+                'label' => 'Password',
+                'name' => 'password',
+                'type' => 'password'
+            ],
         ]);
-
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number'])); 
-         */
     }
 
     /**
@@ -100,5 +104,10 @@ class TeacherCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    protected function setupShowOperation()
+    {
+        $this->setupListOperation();
     }
 }

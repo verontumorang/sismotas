@@ -40,13 +40,11 @@ class CourseCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('name');
-
-        /**
-         * Columns can be defined using the fluent syntax or array syntax:
-         * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']); 
-         */
+        $this->crud->addColumn([
+            'label' => 'Nama Mata Pelajaran',
+            'name' => 'name',
+            'type' => 'text'
+        ]);
     }
 
     /**
@@ -57,15 +55,13 @@ class CourseCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(CourseRequest::class);
+        $this->crud->setValidation(CourseRequest::class);
 
-        CRUD::field('name');
-
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number'])); 
-         */
+         $this->crud->addField([
+            'label' => 'Nama Mata Pelajaran',
+            'name' => 'name',
+            'type' => 'text'
+        ]);
     }
 
     /**

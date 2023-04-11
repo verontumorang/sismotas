@@ -4,4 +4,5 @@
 <li class="nav-item"><a class="nav-link" href="<?php echo e(backpack_url('teacher')); ?>"><i class="nav-icon la la-user"></i> Teachers</a></li>
 <li class="nav-item"><a class="nav-link" href="<?php echo e(backpack_url('course')); ?>"><i class="nav-icon la la-school"></i> Courses</a></li>
 <li class="nav-item"><a class="nav-link" href="<?php echo e(backpack_url('teacher-class')); ?>"><i class="nav-icon la la-school"></i> Teacher Class</a></li>
-<li class="nav-item"><a class="nav-link" href="<?php echo e(backpack_url('student')); ?>"><i class="nav-icon la la-user"></i> Students</a></li><?php /**PATH D:\projects\sismotas\resources\views/vendor/backpack/base/inc/sidebar_content.blade.php ENDPATH**/ ?>
+<li class="nav-item"><a class="nav-link" href="<?php echo e(backpack_url('student')); ?>"><i class="nav-icon la la-user"></i> Students</a></li>
+<li class="nav-item"><a class="nav-link" href="<?php echo e(backpack_url('parents')); ?>"><i class="nav-icon la la-user"></i> Parents</a></li><?php /**PATH D:\projects\sismotas\resources\views/vendor/backpack/base/inc/sidebar_content.blade.php ENDPATH**/ ?>

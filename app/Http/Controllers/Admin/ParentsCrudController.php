@@ -26,9 +26,9 @@ class ParentsCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\Parents::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/parents');
-        CRUD::setEntityNameStrings('parents', 'parents');
+        $this->crud->setModel(\App\Models\Parents::class);
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/parents');
+        $this->crud->setEntityNameStrings('parents', 'parents');
     }
 
     /**
@@ -39,10 +39,13 @@ class ParentsCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('name');
-        CRUD::column('username');
-        CRUD::column('password');
-
+        $this->crud->addColumns([
+        [
+            'label' => 'Nama Orang Tua',
+            'name' => 'name',
+            'type' => 'text'
+        ]
+        ]);
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - CRUD::column('price')->type('number');
@@ -58,11 +61,26 @@ class ParentsCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(ParentsRequest::class);
+        $this->crud->setValidation(ParentsRequest::class);
 
-        CRUD::field('name');
-        CRUD::field('username');
-        CRUD::field('password');
+        $this->crud->addFields([
+            [
+                'label' => 'Nama Orang Tua',
+                'name' => 'name',
+                'type' => 'text'
+            ],
+            [
+                'label' => 'Username',
+                'name' => 'username',
+                'type' => 'text'
+            ],
+            [
+                'label' => 'Password',
+                'name' => 'password',
+                'type' => 'password'
+            ],
+        ]);
+
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

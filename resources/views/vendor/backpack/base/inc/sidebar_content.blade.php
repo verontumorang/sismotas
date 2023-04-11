@@ -5,4 +5,4 @@
 <li class="nav-item"><a class="nav-link" href="{{ backpack_url('course') }}"><i class="nav-icon la la-school"></i> Courses</a></li>
 <li class="nav-item"><a class="nav-link" href="{{ backpack_url('teacher-class') }}"><i class="nav-icon la la-school"></i> Teacher Class</a></li>
 <li class="nav-item"><a class="nav-link" href="{{ backpack_url('student') }}"><i class="nav-icon la la-user"></i> Students</a></li>
-<li class="nav-item"><a class="nav-link" href="{{ backpack_url('parents') }}"><i class="nav-icon la la-question"></i> Parents</a></li>
+<li class="nav-item"><a class="nav-link" href="{{ backpack_url('parents') }}"><i class="nav-icon la la-user"></i> Parents</a></li>

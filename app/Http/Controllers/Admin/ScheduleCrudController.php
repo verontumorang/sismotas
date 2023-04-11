@@ -36,7 +36,7 @@ class ScheduleCrudController extends CrudController
         $this->crud->setModel(Schedule::class);
         $this->crud->setRoute(config('backpack.base.route_prefix') . "/teacher-class/{$this->teacherClass->uuid}/schedule");
         $this->crud->setEntityNameStrings('schedule', "{$this->teacherClass->course->name}");
-        $this->crud->with('teacher.course');
+        $this->crud->with('teacherClass.course');
         date_default_timezone_set("Asia/Jakarta");
     }
 
@@ -93,7 +93,7 @@ class ScheduleCrudController extends CrudController
                 'label' => 'Jam Mulai',
                 'name' => 'start',
                 'type' => 'text',
-                'value' => date("h:i:sa"),
+                'value' => date("h:i"),
             ],
             [
                 'label' => 'Jam Berakhir',

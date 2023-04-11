@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Schedule;
 use App\Http\Requests\ScheduleRequest;
+use App\Models\TeacherClass;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Illuminate\Support\Facades\Route;
 
 /**
  * Class ScheduleCrudController
@@ -25,11 +27,16 @@ class ScheduleCrudController extends CrudController
      * 
      * @return void
      */
+
+    protected TeacherClass $teacherClass;
+
     public function setup()
     {
+        $this->teacherClass = TeacherClass::findOrFail(Route::current()->parameter('teacher_class_uuid'));
         $this->crud->setModel(Schedule::class);
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/schedule');
-        $this->crud->setEntityNameStrings('schedule', 'schedules');
+        $this->crud->setEntityNameStrings('schedule', "{$this->teacherClass->course->name}");
+        $this->crud->with('teacher.course');
     }
 
     /**
@@ -40,16 +47,28 @@ class ScheduleCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('teacher_class_uuid');
-        CRUD::column('start');
-        CRUD::column('end');
-        CRUD::column('activity');
-
-        /**
-         * Columns can be defined using the fluent syntax or array syntax:
-         * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']); 
-         */
+        $this->crud->addColumns([
+            [
+              'label' => 'Pertemuan ke',
+              'name' => 'id',
+              'type' => 'number',
+            ],
+            [
+                'label' => 'Jam Mulai',
+                'name' => 'start',
+                'type' => 'time',
+            ],
+            [
+                'label' => 'Jam Berakhir',
+                'name' => 'end',
+                'type' => 'time',
+            ],
+            [
+                'label' => 'Aktivitias Pelajaran',
+                'name' => 'activity',
+                'type' => 'text',
+            ]
+        ]);
     }
 
     /**
@@ -60,18 +79,29 @@ class ScheduleCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(ScheduleRequest::class);
+        $this->crud->setValidation(ScheduleRequest::class);
 
-        CRUD::field('teacher_class_uuid');
-        CRUD::field('start');
-        CRUD::field('end');
-        CRUD::field('activity');
-
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number'])); 
-         */
+        $this->crud->addColumns([
+            [
+                'type' => 'hidden',
+                'value' => $this->teacherClass->uuid,
+            ],
+            [
+                'label' => 'Jam Mulai',
+                'name' => 'start',
+                'type' => 'time',
+            ],
+            [
+                'label' => 'Jam Berakhir',
+                'name' => 'end',
+                'type' => 'time',
+            ],
+            [
+                'label' => 'Aktivitias Pelajaran',
+                'name' => 'activity',
+                'type' => 'text',
+            ]
+        ]);
     }
 
     /**

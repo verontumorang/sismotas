@@ -7262,3 +7262,7 @@ Did you mean one of these?
 #69 D:\\projects\\sismotas\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\projects\\\\sis...')
 #70 {main}
 "} 
+[2023-04-11 07:28:34] local.ERROR: Trait "App\Models\HasUuid" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\HasUuid\" not found at D:\\projects\\sismotas\\app\\Models\\Parents.php:10)
+[stacktrace]
+#0 {main}
+"} 

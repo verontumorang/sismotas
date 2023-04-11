@@ -27,9 +27,9 @@ class ScheduleCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(Schedule::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/schedule');
-        CRUD::setEntityNameStrings('schedule', 'schedules');
+        $this->crud->setModel(Schedule::class);
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/schedule');
+        $this->crud->setEntityNameStrings('schedule', 'schedules');
     }
 
     /**

@@ -4,14 +4,18 @@ namespace App\Models;
 
 use App\Models\Course;
 use App\Models\Teacher;
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class TeacherClass extends Model
 {
     use HasFactory;
-    use HasUuid;
+    use HasUuids;
+    use CrudTrait;
 
     protected $table = 'teacher_classes';
     protected $primaryKey = 'uuid';

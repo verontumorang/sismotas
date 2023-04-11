@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Course;
 use App\Models\Schedule;
 use App\Http\Requests\ScheduleRequest;
+use App\Models\Teacher;
 use App\Models\TeacherClass;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
@@ -43,6 +45,8 @@ class TeacherClassCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+        $this->crud->addButtonFromView('line', 'schedule', 'schedule', 'beginning');
+
         $this->crud->addColumns([
             [
                 'label' => 'Kelas',
@@ -53,6 +57,35 @@ class TeacherClassCrudController extends CrudController
               'label' => 'Nama Mata Pelajaran',
               'name' => 'course.name',
               'type' => 'text',
+            ],
+        ]);
+    }
+
+      /**
+     * Define what happens when the Create operation is loaded.
+     *
+     * @see https://backpackforlaravel.com/docs/crud-operation-create
+     * @return void
+     */
+    protected function setupCreateOperation()
+    {
+        $this->crud->addFields([
+            [
+                'name' => 'teacher_uuid',
+                'label' => "Nama Guru",
+                'type' => 'select_from_array',
+                'options' => Teacher::pluck('name', 'uuid'),
+            ],
+            [
+                'name' => 'course_uuid',
+                'label' => "Mata Pelajaran",
+                'type' => 'select_from_array',
+                'options' => Course::pluck('name', 'uuid'),
+            ],
+             [
+                'label' => 'Kelas',
+                'name' => 'class',
+                'type' => 'text',
             ],
         ]);
     }

@@ -20,15 +20,21 @@ class Schedule extends Model
     protected $table = 'schedules';
     protected $primaryKey = 'uuid';
     protected $fillable = [
-        'teacher_class_uuid',
+        'teacher_uuid',
+        'course_uuid',
+        'class',
         'start',
         'end',
-        'activity',
     ];
 
-    public function teacherClass(): BelongsTo
+    public function teacher(): BelongsTo
     {
-        return $this->belongsTo(TeacherClass::class, 'teacher_class_uuid', 'uuid');
+        return $this->belongsTo(Teacher::class, 'teacher_uuid', 'uuid');
+    }
+
+    public function course(): BelongsTo
+    {
+        return $this->belongsTo(Course::class, 'course_uuid', 'uuid');
     }
 
     public function attendance(): hasMany

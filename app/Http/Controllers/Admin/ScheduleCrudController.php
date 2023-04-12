@@ -37,7 +37,7 @@ class ScheduleCrudController extends CrudController
         $this->crud->setRoute(config('backpack.base.route_prefix') . "/teacher-class/{$this->teacherClass->uuid}/schedule");
         $this->crud->setEntityNameStrings('schedule', "{$this->teacherClass->course->name}");
         $this->crud->with('teacherClass.course');
-        date_default_timezone_set("Asia/Jakarta");
+        $this->crud->query->where('teacher_class_uuid', $this->teacherClass->uuid);
     }
 
     /**
@@ -48,7 +48,7 @@ class ScheduleCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        //testing
+//        $this->crud->removeButton('update');
         $this->crud->addColumns([
             [
               'label' => 'Pertemuan ke',
@@ -96,9 +96,9 @@ class ScheduleCrudController extends CrudController
                 'value' => date("h:i"),
             ],
             [
-                'label' => 'Jam Berakhir',
+                'value' => '00:00:00',
                 'name' => 'end',
-                'type' => 'time',
+                'type' => 'hidden',
             ],
             [
                 'label' => 'Aktivitias Pelajaran',

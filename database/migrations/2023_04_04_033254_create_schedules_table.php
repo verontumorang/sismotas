@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('activities', function (Blueprint $table) {
+        Schema::create('schedules', function (Blueprint $table) {
             $table->id();
             $table->uuid()->unique();
-            $table->string('activity');
-            $table->string('implementation');
+            $table->foreignUuid('teacher_uuid')->references('uuid')->on('teachers')->cascadeOnDelete();
+            $table->foreignUuid('course_uuid')->references('uuid')->on('courses')->cascadeOnDelete();
+            $table->string('class');
+            $table->time('start');
+            $table->time('end');
             $table->timestamps();
         });
     }
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('activities');
+        Schema::dropIfExists('schedules');
     }
 };

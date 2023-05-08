@@ -7,6 +7,7 @@ use App\Models\TeacherClass;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Teacher extends Model
 {
@@ -23,8 +24,8 @@ class Teacher extends Model
         'password',
     ];
 
-    public function teacherclass(): hasMany
+    public function schedule(): hasMany
     {
-        return $this->hasMany(TeacherClass::class, 'teacher_uuid', 'uuid');
+        return $this->hasMany(Schedule::class, 'teacher_uuid', 'uuid');
     }
 }

@@ -14,8 +14,11 @@ return new class extends Migration
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
             $table->uuid()->unique();
-            $table->foreignUuid('student_uuid')->references('uuid')->on('students')->casecadeOnDelete();
-            $table->foreignUuid('schedule_uuid')->references('uuid')->on('schedules')->casecadeOnDelete();
+            $table->foreignUuid('student_uuid')->references('uuid')->on('students')->cascadeOnDelete();
+            $table->foreignUuid('schedule_uuid')->references('uuid')->on('schedules')->cascadeOnDelete();
+            $table->boolean('attend')->nullable();
+            $table->boolean('sick')->nullable();
+            $table->boolean('no_reason')->nullable();
             $table->timestamps();
         });
     }
